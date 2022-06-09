@@ -1,0 +1,52 @@
+html {
+    background-color: #292626 ; /*blue lighten-3*/
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+/* Nav bar */
+nav {
+    background-color: #0d47a1;  /*blue darken-4*/
+}
+nav img {
+    height: 3em;
+    vertical-align: middle;
+    margin: 0 .5em;
+}
+input[type="radio"] {
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ffffff;
+	border-radius: 50%;
+	background-clip: content-box;
+	padding: 3px;
+}
+
+input[type="radio"]:checked {
+	background-color: #0d47a1;;
+}
+
+nav .btn, .sidenav .btn {
+    background-color: #0d47a1; 
+}
+nav .btn:hover, .dropdown:hover .dropbtn, .sidenav .btn:hover{
+    background-color: #17459c; 
+}
+
+/* footer */
+.page-footer {
+    background-color: #0d47a1; 
+}
+
+a {
+    color: #ede4e5;  
+}
+
+a:hover {
+    color: #ffffff;
+}

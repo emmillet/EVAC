@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %} EVAC {% endblock %}</title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/materialize.min.css')}}">
+        <link rel="stylesheet" type= "text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Shared site-wide CSS  -->
+        <!-- <link rel="stylesheet" href="/styles/main.css"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css')}}">
+        <!-- Page specific CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename= 'styles/my-info.css')}}">
+          <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"> -->
+          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    </head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class = "hide-on-small-and-down" src="{{url_for('static', filename='images/ambulance.png')}}"/>
+                <a href="/" class="brand-logo">EVAC</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li><a href="/login"><i class="material-icons left">login</i>Login</a></li>
+                    <li><a href="/calendar"><i class="material-icons left">schedule</i>Schedule</a></li>
+                    <li><a href="/infoform"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+                    <li><a href="/rigform"><i class="material-icons left">assignment</i>Rig Check</a></li>
+                    
+                    <li><a href="/create"><i class="material-icons left">assignment</i>Create User</a></li>
+                    <li><a href = "/data"><i class = "material-icons left">view_list</i>View Data</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- <ul id="mobile-nav" class="sidenav">
+            <li><a href="/login"><i class="material-icons left"` style="font-size:30px">schedule</i>Schedule</a></li>
+                    <li><a href="/templates/my-info"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/templates/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+        </ul> -->
+    </header>
+<style>
+ 
+ td {
+        width: 150px;
+        text-align: center;
+        color: solid white;
+        border: 3px solid white;
+        padding: 5px;
+      }
+</style>
+<table>
+  <thead>
+    <tr>
+        <th class="text-left white-text">Rig Check ID</th>
+        <th class="text-left white-text">Shift ID</th>
+        <th class="text-left white-text">Day</th>
+        <th class="text-left white-text">Dispatcher Number</th>
+        <th class="text-left white-text">Chief ID</th>
+        <th class="text-left white-text">ID 1</th>
+        <th class="text-left white-text">ID 2</th>
+        <th class="text-left white-text">ID 3</th>
+        <th class="text-left white-text">ID 4</th>
+        <th class="text-left white-text">Radio Number</th>
+        <th class="text-left white-text">Case Number</th>
+        <th class="text-left white-text">Strap Number</th>
+        <th class="text-left white-text">Mic Number</th>
+        <th class="text-left white-text">General Pager Number</th>
+        <th class="text-left white-text">Lights Out</th>
+        <th class="text-left white-text">Rig Bag</th>
+        <th class="text-left white-text">Suction</th>
+        <th class="text-left white-text">Pedi Defib</th>
+        <th class="text-left white-text">Adult Defib</th>
+        <th class="text-left white-text">O2 A</th>
+        <th class="text-left white-text">O2 B</th>
+        <th class="text-left white-text">Trauma</th>
+        <th class="text-left white-text">Pedi Bag</th>
+        <th class="text-left white-text">Scoop</th>
+        <th class="text-left white-text">Stair</th>
+        <th class="text-left white-text">Backboards</th>   
+        <th class="text-left white-text">Pedi Boards</th>   
+        <th class="text-left white-text">Collar Bag</th>  
+        <th class="text-left white-text">KED</th>   
+        <th class="text-left white-text">Narccan</th>   
+        <th class="text-left white-text">Epipen</th>  
+        <th class="text-left white-text">Glucose</th>   
+        <th class="text-left white-text">Comments</th>   
+  
+    </tr>
+    </thead>    
+    <tbody>
+     {% for row in data %}    
+            <tr>
+                <td class="text-left white-text">{{row[0]}}</td>
+                <td class="text-left white-text">{{row[1]}}</td>
+                <td class="text-left white-text">{{row[2]}}</td>
+                <td class="text-left white-text">{{row[3]}}</td>
+                <td class="text-left white-text">{{row[4]}}</td>
+                <td class="text-left white-text">{{row[5]}}</td>
+                <td class="text-left white-text">{{row[6]}}</td>
+                <td class="text-left white-text">{{row[7]}}</td>
+                <td class="text-left white-text">{{row[8]}}</td>
+                <td class="text-left white-text">{{row[9]}}</td>
+                <td class="text-left white-text">{{row[10]}}</td>
+                <td class="text-left white-text">{{row[11]}}</td>
+                <td class="text-left white-text">{{row[12]}}</td>
+                <td class="text-left white-text">{{row[13]}}</td>
+                <td class="text-left white-text">{{row[14]}}</td>
+                <td class="text-left white-text">{{row[15]}}</td>
+                <td class="text-left white-text">{{row[16]}}</td>
+                <td class="text-left white-text">{{row[17]}}</td>
+                <td class="text-left white-text">{{row[18]}}</td>
+                <td class="text-left white-text">{{row[19]}}</td>
+                <td class="text-left white-text">{{row[20]}}</td>
+                <td class="text-left white-text">{{row[21]}}</td>
+                <td class="text-left white-text">{{row[22]}}</td>
+                <td class="text-left white-text">{{row[23]}}</td>
+                <td class="text-left white-text">{{row[24]}}</td>
+                <td class="text-left white-text">{{row[25]}}</td>
+                <td class="text-left white-text">{{row[26]}}</td>
+                <td class="text-left white-text">{{row[27]}}</td>
+                <td class="text-left white-text">{{row[28]}}</td>
+                <td class="text-left white-text">{{row[29]}}</td>
+                <td class="text-left white-text">{{row[30]}}</td>
+                <td class="text-left white-text">{{row[31]}}</td>
+                <td class="text-left white-text">{{row[32]}}</td>
+                <td class="text-left white-text">{{row[33]}}</td>
+                <td class="text-left white-text">{{row[34]}}</td>
+                
+                
+               
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
+

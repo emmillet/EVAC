@@ -1,0 +1,241 @@
+<!--
+   Step 6 of prototyped homepage (index) creation: 
+
+   Moved the internal style and added some new styles in some external stylesheets:
+    - Some styles that will apply to elements of all pages, styles/main.css
+    - Some styles that only apply to this page, styles/index.css
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %} EVAC {% endblock %}</title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/materialize.min.css')}}">
+        <link rel="stylesheet" type= "text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Shared site-wide CSS  -->
+        <!-- <link rel="stylesheet" href="/styles/main.css"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css')}}">
+        <!-- Page specific CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename= 'styles/my-info.css')}}">
+    </head>
+
+    <body>
+        {% block content %}
+    <!-- https://materializecss.com/navbar.html -->
+    <!-- https://materializecss.com/navbar.html#mobile-collapse -->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class = "hide-on-small-and-down" src="{{url_for('static', filename='images/ambulance.png')}}"/>
+                <a href="/" class="brand-logo">EVAC</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    {% for row in data %}
+                    <li><!--{{session.userinfo["email"]}}-->{{row[1]}}</li>
+                    {% endfor %}
+                    <li><a href="/logout"><i class="material-icons left">logout</i>Logout </a></li>
+                    <li><a href="/calendar"><i class="material-icons left">schedule</i>Schedule</a></li>
+                    <li><a href="/infoform"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/clockin"><i class="material-icons left">assignment</i>Clock In</a></li>
+                    <li><a href="/rigform"><i class="material-icons left">assignment</i>Rig Check</a></li>
+                    {% if admin==1 %}
+                    <li><a href="/create"><i class="material-icons left">assignment</i>Create User</a></li>
+                    <li><a href = "/data"><i class = "material-icons left">view_list</i>View Data</a></li>
+                    {% endif %}
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- <ul id="mobile-nav" class="sidenav">
+            <li><a href="/login"><i class="material-icons left"` style="font-size:30px">schedule</i>Schedule</a></li>
+                    <li><a href="/templates/my-info"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/templates/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+        </ul> -->
+    </header>
+
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            
+            <div class="col-md-12 border-right">
+                <form action="/rigform" method = "POST">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    </div>
+                    <div class="row mt-2">
+                        <h4 class="text-right white-text" style="font-size:50px">Shift Info</h4>
+                        <div class="col-md-6"><label class="labels">Dispatcher #</label><input class = "white-text" type="number" class="form-control" placeholder="Dispatcher #" name="dispatcher" required></div>
+                        <div class="col-md-6"><label class="labels">Crew Chief</label><input class = "white-text" type="text" class="form-control" placeholder="Crew Chief Name" name="chief" required></div>
+                        <div class="col-md-6"><label class="labels">Day</label><input class = "white-text" type="date" class="form-control" name="day" placeholder="Date" required></div>
+                        <div class="col-md-6"><label class="labels">Time</label><input class = "white-text" type="time" class="form-control" name="time" placeholder="Time" required></div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <h4 class="text-right white-text" style="font-size:50px">Crew Member 1 (Required)</h4>
+                        
+                      <div class="col-md-12"><label class="labels">Name</label><input class = "white-text" type="text" class="form-control" placeholder="Name" name="name1" required></div>
+                       
+                        <div class="col-md-12"><label class="labels">Radio Number</label><input class = "white-text" type="number" class="form-control" placeholder="Radio Number" name="radio1" required></div>   
+                        
+                        <h4 class="text-right white-text" style="font-size:50px">Crew Member 2 (Required)</h4>
+                        <div class="col-md-12"><label class="labels">Name</label><input class = "white-text" type="text" class="form-control" placeholder="Name" name="name2" required></div>
+
+                        <div class="col-md-12"><label class="labels">Radio Number</label><input class = "white-text" type="number" class="form-control" placeholder="Radio Number" name="radio2" required></div>   
+
+                        <h4 class="text-right white-text" style="font-size:50px">Crew Member 3 (Optional)</h4>
+                        <div class="col-md-12"><label class="labels">Name</label><input class = "white-text" type="text" class="form-control" placeholder="Name" name="name3"></div>
+                       
+                        <div class="col-md-12"><label class="labels">Radio Number</label><input class = "white-text" type="number" class="form-control" placeholder="Radio Number" name="radio3"></div>   
+
+                        <h4 class="text-right white-text" style="font-size:50px">Crew Member 4 (Optional)</h4>
+                        <div class="col-md-12"><label class="labels">Name</label><input class = "white-text" type="text" class="form-control" placeholder="Name" name="name4"></div>
+                        
+                        <div class="col-md-12"><label class="labels">Radio Number</label><input class = "white-text" type="number" class="form-control" placeholder="Radio Number" name="radio4"></div>   
+                    </div>
+                    <div class="row mt-3">
+                        <h4 class="text-right white-text" style="font-size:50px">Radio</h4>
+                        <div class="col-md-12"><label class="labels"># of Radios</label><input class = "white-text" type="number" class="form-control" placeholder="# of Radios" name="radioNum" required></div> 
+                        <div class="col-md-12"><label class="labels"># of Cases</label><input class = "white-text" type="number" class="form-control" placeholder="# of Cases" name="caseNum" required></div> 
+                        <div class="col-md-12"><label class="labels"># of Straps</label><input class = "white-text" type="number" class="form-control" placeholder="# of Straps" name="strapNum" required></div> 
+                        <div class="col-md-12"><label class="labels"># of Mics</label><input class = "white-text" type="number" class="form-control" placeholder="# of Mics" name="micNum" required></div> 
+                        <div class="col-md-12"><label class="labels">Duty Pager #</label><input class = "white-text" type="text" class="form-control" placeholder="Duty Pager #" name="dutyPagerNum" required></div>
+                        <div class="col-md-12"><label class="labels">General Pager #</label><input class = "white-text" type="text" class="form-control" placeholder="General Pager #" name="genPagerNum" required></div>
+
+                       
+                    </div>
+                    <div class="row mt-3">
+                        <h4 class="text-right white-text" style="font-size:50px">Equipment</h4>
+                        <div class="col-md-12"><label class="labels">Lights Out</label><input class = "radio" type="number" class="form-control" placeholder="Number of Lights Out" name="numLight" required></div>   
+                        <h4 class="text-right white-text" style="font-size:25px">Rig Bag</h4>
+                        <div class="col-md-5"> <label> <input name = "rigBag" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "rigBag" type="radio"/> <span>No</span> </label></div>
+                        <h4 class="text-right white-text" style="font-size:25px">Suction</h4>
+                        <div class="col-md-5"> <label> <input name = "suction" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "suction" type="radio"/> <span>No</span> </label></div> 
+                        <h4 class="text-right white-text" style="font-size:25px">Defibrillator (Adult)</h4>
+                        <div class="col-md-5"> <label> <input name = "defibAd" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "defibAd" type="radio"/> <span>No</span> </label></div>   
+                        <h4 class="text-right white-text" style="font-size:25px">Defibrillator (Peds)</h4>
+                        <div class="col-md-5"> <label> <input name = "defibPed" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "defibPed" type="radio"/> <span>No</span> </label></div>   
+                        <h4 class="text-right white-text" style="font-size:25px">Portable O2 Bag 1</h4>
+                        <div class="col-md-5"> <label> <input name = "o2a" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "o2a" type="radio"/> <span>No</span> </label></div>  
+                        <h4 class="text-right white-text" style="font-size:25px">Portable O2 Bag 2</h4>
+                        <div class="col-md-5"> <label> <input name = "o2b" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "o2b" type="radio"/> <span>No</span> </label></div>
+                        <h4 class="text-right white-text" style="font-size:25px">Trauma Kit</h4>
+                        <div class="col-md-5"> <label> <input name = "trauma" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "trauma" type="radio"/> <span>No</span> </label></div>
+                        <h4 class="text-right white-text" style="font-size:25px">Pedi Bag</h4>
+                        <div class="col-md-5"> <label> <input name = "pediBag" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "pediBag" type="radio"/> <span>No</span> </label></div>
+                        <h4 class="text-right white-text" style="font-size:25px">Scoop</h4>
+                        <div class="col-md-5"> <label> <input name = "scoop" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "scoop" type="radio"/> <span>No</span> </label></div> 
+                        <h4 class="text-right white-text" style="font-size:25px">Stair Chair</h4>
+                        <div class="col-md-5"> <label> <input name = "stairChair" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "stairChair" type="radio"/> <span>No</span> </label></div> 
+                        <h4 class="text-right white-text" style="font-size:25px">Backboards</h4>
+                        <div class="col-md-5"> <label> <input name = "backboards" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "backboards" type="radio"/> <span>No</span> </label></div>  
+                        <h4 class="text-right white-text" style="font-size:25px">Collar Bag</h4>
+                        <div class="col-md-5"> <label> <input name = "collarBag" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "collarBag" type="radio"/> <span>No</span> </label></div>   
+                        <h4 class="text-right white-text" style="font-size:25px">KED</h4>
+                        <div class="col-md-5"> <label> <input name = "ked" type="radio" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "ked" type="radio"/> <span>No</span> </label></div>    
+                        <h4 class="text-right white-text" style="font-size:25px">Narccan Exp. Date</h4><input class = "white-text" type="date" class="form-control" placeholder="Expiration Date" name="narccan" required></div>   
+                        <div class="col-md-12"><label class="labels">Epi-Pen Exp. Date</label><input class = "white-text" type="date" class="form-control" placeholder="Expiration Date" name="epipen" required></div>   
+                        <div class="col-md-12"><label class="labels">Glucose Exp. Date</label><input class = "white-text" type="date" class="form-control" placeholder="Expiration Date" name="glucose" required></div>   
+                       
+                        <div class="col-md-12"><label class="labels">Comments</label><input class = "white-text" type="text" class="form-control" placeholder="Comments" name="comments"></div>
+
+                    </div>
+                    <div class="mt-5 text-center"><button id = "myBtn" class="btn btn-primary profile-button" type="submit"value="Submit">Submit Rig Check</button>
+                </form>
+                </div>
+
+                
+                    
+                        <!-- <div id="myModal" class="modal">
+                    
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <div class="modal-body">
+                                    <p>Confirm you are [Allen Park], clocking in for a shift with</p>
+                                    <li>Anthony Silva </li>
+                                    <li>Paulette Nardi</li>
+                                    <p>Confirm radio number is correct</p>
+                                    <li># of radios</li>
+                                    <li># of cases</li>
+                                    <li># of straps</li>
+                                    <li># of mics</li>
+                                    <li>Duty Pager #</li>
+                                    <li>General Pager #</li>
+                                    <p>Confirm equipment is correct</p>
+                                    <li># of lights out</li>
+                                    <li>rig bag</li>
+                                    <li>suction</li>
+                                    <li>defibrillator</li>
+                                    <li>defibrillator (adult)</li>
+                                    <li>portable o2 bag 1 and 2</li>
+                                    <li>trauma kit</li>
+                                    <li>pedi bag</li>
+                                    <li>scoop</li>
+                                    <li>stair chair (w/ sheet)</li>
+                                    <li>backboards</li>
+                                    <li>pedi board</li>
+                                    <li>collar bag</li>
+                                    <li>ked x2</li>
+                                    <li>narccan exp. date</li>
+                                    <li>epi-pen exp. date</li>
+                                    <li>glucose exp. date</li>
+                                  </div>
+                                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit"  value="Submit">Confirm</button></div>
+                            </div>
+                        
+                            </div>
+                        </div>
+                        <script>
+                            var modal = document.getElementById("myModal");
+                    
+                            var btn = document.getElementById("myBtn");
+                            
+                            var span = document.getElementsByClassName("close")[0];
+                            
+                            btn.onclick = function() {
+                              modal.style.display = "block";
+                              
+                            }
+                            
+                            span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+                            
+                            window.onclick = function(event) {
+                              if (event.target == modal) {
+                                modal.style.display = "none";
+                              }
+                            }
+                            </script>
+                            
+                    
+                    
+                        </div>
+                      
+                </div> -->
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    </div>
+    {% endblock %}
+    </body>
+</html>
+
+

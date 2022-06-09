@@ -1,0 +1,32 @@
+
+main h1 {
+    font-weight: bolder;
+    color: rgb(27, 47, 114);
+    color: rgb(255, 253, 249);
+    text-align: center;
+}
+
+.card-action{
+    height: 1em;
+    margin-bottom: 3em;
+ }
+
+ 
+ .card{
+     height: 13em;
+     border-radius: 50px;
+     width:70%;
+     text-align: center;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+     padding: 16px;
+     margin: 0 auto; /* Added */
+     float: none; /* Added */
+     margin-bottom: 10px; /* Added */
+ }
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+}

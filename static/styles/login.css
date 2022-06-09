@@ -1,0 +1,108 @@
+html {
+  background-color: #292626 ; /*blue lighten-3*/
+}
+
+.main-form-component {
+background-color: #0d47a1;
+
+}
+.h1 {
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+main h1 {
+  font-weight: bolder;
+  color: rgb(255, 253, 249);
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+width: 100%;
+padding: 12px 10px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+background-color: #04AA6D;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+font-size: 30px;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+width: auto;
+padding: 10px 18px;
+background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+text-align: center;
+margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+width: 40%;
+border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+float: right;
+color: white;
+font-size: 28px;
+padding-top: 16px;
+}
+
+
+label {
+  font-size: 30px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Added to make footer at bottom*/ 
+}
+
+/* Nav bar */
+nav {
+  background-color: #0d47a1;  /*blue darken-1*/
+}
+nav img {
+  height: 3em;
+  vertical-align: middle;
+  margin: 0 .5em;
+}
+
+nav .btn, .sidenav .btn {
+  background-color: #d84315; /*deep-orange darken-3*/
+}
+nav .btn:hover, .sidenav .btn:hover{
+  background-color: #f4511e; /*deep-orange darken-1*/
+}
+
+/* footer */
+.page-footer {
+  background-color: #0d47a1; 
+}

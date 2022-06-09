@@ -1,0 +1,135 @@
+<!--
+   Step 6 of prototyped homepage (index) creation: 
+
+   Moved the internal style and added some new styles in some external stylesheets:
+    - Some styles that will apply to elements of all pages, styles/main.css
+    - Some styles that only apply to this page, styles/index.css
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %} EVAC {% endblock %}</title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/materialize.min.css')}}">
+        <link rel="stylesheet" type= "text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Shared site-wide CSS  -->
+        <!-- <link rel="stylesheet" href="/styles/main.css"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css')}}">
+        <!-- Page specific CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename= 'styles/index.css')}}">
+    </head>
+
+    <body>
+        {% block content %}
+        {% if session %}
+    <!-- https://materializecss.com/navbar.html -->
+    <!-- https://materializecss.com/navbar.html#mobile-collapse -->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class = "hide-on-small-and-down" src="{{url_for('static', filename='images/ambulance.png')}}"/>
+                <a href="/" class="brand-logo">EVAC</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <!--{% for row in data %}   
+                    <li>Welcome, {{row[1]}}!</li>
+                    {% endfor %} -->
+                    {% for row in data %}
+                    <li>Welcome, <!--{{session.userinfo["email"]}}-->{{row[1]}}</li>
+                    {% endfor %}
+                    <li><a href="/logout"><i class="material-icons left">logout</i>Logout </a></li>
+                    <li><a href="/calendar"><i class="material-icons left">schedule </i>Schedule</a></li>
+                    <li><a href="/infoform"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/clockin"><i class="material-icons left">assignment</i>Clock In</a></li>
+                    <li><a href="/rigform"><i class="material-icons left">assignment</i>Rig Check</a></li>
+                    {% if admin==1 %}
+                    <li><a href="/create"><i class="material-icons left">assignment</i>Create User</a></li>
+                    <li><a href = "/data"><i class = "material-icons left">view_list</i>View Data</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </nav>
+        <!-- <ul id="mobile-nav" class="sidenav">
+            <li><a href="/login"><i class="material-icons left"` style="font-size:30px">schedule</i>Schedule</a></li>
+                    <li><a href="/templates/my-info"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/templates/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+        </ul> -->
+    </header>
+
+    <main>
+        <!-- https://materializecss.com/grid.html -->
+        <!-- https://materializecss.com/cards.html -->
+        <div class="container">
+            <h1 style="font-size:55px;">EVAC Webpage</h1>
+
+            <div class="row" style="font-size:40px">
+                <div class="col s5">
+                    <img class="responsive-img" src="{{ url_for('static',filename='images/logo.PNG')}}" alt="EVAC Logo">
+                </div>
+                <div class="col s7 ">
+                    <div class="card blue darken-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">EVAC</span>
+                            <p>Englewood Volunteer Ambulance Corps</p>
+
+                        <ul class="card-action white-text">
+                            <div class = "card-action">
+                            <li><a class ="white-text" href="/infoform">View Your Info!</a> 
+                         </li></div>
+                            <div class = "card-action">
+                            <li><a class ="white-text" href="/calendar">View The Schedule!</a> 
+                         </li></div>
+                            <div class = "card-action">
+                            <li><a class ="white-text" href="/clockin">Clock In!</a> 
+                         </li></div></ul>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% else %}
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class = "hide-on-small-and-down" src="{{url_for('static', filename='images/ambulance.png')}}"/>
+                <a href="/" class="brand-logo">EVAC</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li>Welcome, Guest!</li>
+                    <li><a href="/login"><i class="material-icons left">login</i>Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- <ul id="mobile-nav" class="sidenav">
+            <li><a href="/login"><i class="material-icons left"` style="font-size:30px">schedule</i>Schedule</a></li>
+                    <li><a href="/templates/my-info"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/templates/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+        </ul> -->
+    </header>
+
+    <main>
+        <!-- https://materializecss.com/grid.html -->
+        <!-- https://materializecss.com/cards.html -->
+        <div class="container">
+            <h1 style="font-size:55px;">EVAC Webpage</h1>
+            <div class="row" style="font-size:40px">
+                <div class="col s5">
+                    <img class="responsive-img" src="{{ url_for('static',filename='images/logo.PNG')}}" alt="EVAC Logo">
+                </div>
+            </div>
+        </div>
+    </main>
+    {% endif %}
+    <!-- Compiled and minified Materialize JavaScript -->
+    <script src="{{ url_for('static',filename='js/materialize.min.js')}}"></script>
+      
+    <!-- initialize Materialize elements; namely, the navbar -->
+    <script> M.AutoInit(); </script>
+    {% endblock %}
+    </body>
+</html>

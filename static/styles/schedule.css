@@ -1,0 +1,54 @@
+.month{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.calendar {
+    border-radius: 10px;
+  }
+
+body {
+  min-height: 100vh;
+}
+
+main {
+  max-width: max-content;
+  margin: 3em auto 0 auto;
+  border-radius: 8px;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 125%;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.days li {
+    float: left;
+    width: 14.28%;
+  }
+
+  .calendar .days li {
+    border-bottom: 1px solid #eee;
+    min-height: 9rem;
+  }
+  
+  .calendar .days li .date {
+    margin: 0.1rem 0;
+  }
+  .day-of-week{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .calendar .days li .event {
+    font-size: 0.75em;
+    padding: 0.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 1rem;
+    margin-bottom: 3px;
+    background-color: aquamarine;
+  }
+  
+  .calendar .days li .event.span-2 {
+    width: 200%;
+  }
+  
+  

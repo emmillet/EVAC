@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <title>EVAC- Login</title>
+        <link rel="shortcut icon" type="image/png" href="/images/logo.PNG"/>
+
+        <!-- Compiled and minified CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/materialize.min.css')}}">
+        <link rel="stylesheet" type= "text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Shared site-wide CSS  -->
+        <!-- <link rel="stylesheet" href="/styles/main.css"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css')}}">
+        <!-- Page specific CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename= 'styles/login.css')}}">
+    </head>
+    <body>
+        {% block content %}
+    <!-- https://materializecss.com/navbar.html -->
+    <!-- https://materializecss.com/navbar.html#mobile-collapse -->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class = "hide-on-small-and-down" src="{{url_for('static', filename='images/ambulance.png')}}"/>
+                <a href="/" class="brand-logo">EVAC</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li><a href="/login"><i class="material-icons left">login</i>Login</a></li>
+                    <li><a href="/calendar"><i class="material-icons left">schedule</i>Schedule</a></li>
+                    <li><a href="/infoform"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+                    <li><a href="/rigform"><i class="material-icons left">assignment</i>Rig Check</a></li>
+                
+                    <li><a href="/create"><i class="material-icons left">assignment</i>Create User</a></li>
+                    <li><a href = "/data"><i class = "material-icons left">view_list</i>View Data</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- <ul id="mobile-nav" class="sidenav">
+            <li><a href="/login"><i class="material-icons left"` style="font-size:30px">schedule</i>Schedule</a></li>
+                    <li><a href="/templates/my-info"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/templates/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+        </ul> -->
+    </header>
+
+    <main>
+        <!-- https://materializecss.com/grid.html -->
+        <!-- https://materializecss.com/cards.html -->
+        <form>
+            <div class="container">
+                <h1> LOGIN</h1>
+                <label for="user"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="user" required>
+            
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+            
+                <button type="submit">Login</button>
+                <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+            
+            <div class="container" style="background-color:#292626">
+                <button type="button" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+          </form>
+        
+    </main>
+
+    
+    <!-- https://materializecss.com/footer.html -->
+    <!-- https://materializecss.com/grid.html -->
+        <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2021 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+    </footer>
+
+    <!-- Compiled and minified Materialize JavaScript -->
+    <script src="/js/materialize.min.js"></script>
+      
+    <!-- initialize Materialize elements; namely, the navbar -->
+    <script> M.AutoInit(); </script>
+    {% endblock %}
+    </body>
+</html>
+<!--<<<<<<< HEAD
+=======
+=======
+</html>
+=======
+login page
+>>>>>>> 5a6e996145a2db91684fb715a9b6b55ece4e034a
+>>>>>>> 21dc8ad44e70ff2f2f9cd47746e8e291f7f31230
+>>>>>>> 5fa5abc44650fd75b47984a5b5d0b9f053880de4
+-->

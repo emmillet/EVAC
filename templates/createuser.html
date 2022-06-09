@@ -1,0 +1,142 @@
+<!--
+   Step 6 of prototyped homepage (index) creation: 
+
+   Moved the internal style and added some new styles in some external stylesheets:
+    - Some styles that will apply to elements of all pages, styles/main.css
+    - Some styles that only apply to this page, styles/index.css
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %} EVAC {% endblock %}</title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/materialize.min.css')}}">
+        <link rel="stylesheet" type= "text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Shared site-wide CSS  -->
+        <!-- <link rel="stylesheet" href="/styles/main.css"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css')}}">
+        <!-- Page specific CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename= 'styles/my-info.css')}}">
+    </head>
+    <body>
+
+    <!-- https://materializecss.com/navbar.html -->
+    <!-- https://materializecss.com/navbar.html#mobile-collapse -->
+    {% block content %}
+    {% if session %}
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class="hide-on-small-and-down" src="{{ url_for('static',filename='images/ambulance.png')}}">
+                <a href="/" class="brand-logo">EVAC</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    {% for row in data %}
+                    <li><!--{{session.userinfo["email"]}}-->{{row[1]}}</li>
+                    {% endfor %}
+                    <li><a href="/logout"><i class="material-icons left">logout</i>Logout </a></li>
+                    <li><a href="/calendar"><i class="material-icons left">schedule</i>Schedule</a></li>
+                    <li><a href="/infoform"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/clockin"><i class="material-icons left">assignment</i>Clock In</a></li>
+                    <li><a href="/rigform"><i class="material-icons left">assignment</i>Rig Check</a></li>
+           
+                    <li><a href="/create"><i class="material-icons left">assignment</i>Create User</a></li>
+                    <li><a href = "/data"><i class = "material-icons left">view_list</i>View Data</a></li>
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- <ul id="mobile-nav" class="sidenav">
+            <li><a href="/login"><i class="material-icons left"` style="font-size:30px">schedule</i>Schedule</a></li>
+                    <li><a href="/templates/my-info"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/templates/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+        </ul> -->
+    </header>
+
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <form action="/create" method = "POST">
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right white-text" style="font-size:50px">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input class = "white-text" type="text" class="form-control" placeholder="Enter New Name" value="" name = "name" required></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input class = "white-text" type="text" class="form-control" value="" placeholder="Enter New Surname" name = "surname" required></div>
+                        <div class="col-md-6"><label class="labels">Birthdate</label><input class = "white-text" type="date" class="form-control" value="" placeholder="" name = "birthdate" required></div>
+                        
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input class = "white-text" type="text" class="form-control" placeholder="Enter New Mobile Number" value="" name = "mobile number"></div>
+                        <div class="col-md-12"><label class="labels">Address</label><input class = "white-text" type="text" class="form-control" placeholder="Enter New Address" value="" name = "address1"></div>
+                        <div class="col-md-12"><label class="labels">City</label><input class = "white-text" type="text" class="form-control" placeholder="Enter New City" value="" name = "address2"></div>
+                    
+                        <div class="col-md-12"><label class="labels">Email</label><input class = "white-text" type="text" class="form-control" placeholder="Enter New Email" value="" name = "email" required></div>
+                        {% if exists==1 %}
+                        <h4 class="text-right red-text" style="font-size:25px">This user already exists.</h4>
+                        {% endif %}
+
+                        <h4 class="text-right white-text" style="font-size:25px">Admin</h4>
+                        <div class="col-md-5"> <label> <input name = "admin" type="radio" value="1" checked /> <span>Yes</span> </label></div>
+                        <div class="col-md-5"> <label> <input name = "admin" type="radio" value="0"/> <span>No</span> </label></div>
+
+                    </div>
+            </form>
+                
+                    <div class="mt-5 text-center"><button id = "myBtn" class="btn btn-primary profile-button" type="submit"value="Submit">Create User</button></div>
+                        <!-- <div id="myModal" class="modal">
+                    
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <div class="modal-body">
+                                    <p>Confirm your information</p>
+                                    <li>Name</li>
+                                    <li>Surname</li>
+                                    <li>Birthdate</li>
+                                    <li>Mobile Number</li>
+                                    <li>Address Line 1</li>
+                                    <li>Address Line 2</li>
+                                  </div>
+                                <div class="mt-5 text-center"><form action="/my-info" method = "POST"><button class="btn btn-primary profile-button" type="submit" value = "Submit">Confirm</button></form></div>
+                            </div>
+                        
+                            </div>
+                        </div>
+                        <script>
+                            var modal = document.getElementById("myModal");
+                    
+                            var btn = document.getElementById("myBtn");
+                            
+                            var span = document.getElementsByClassName("close")[0];
+                            
+                            btn.onclick = function() {
+                              modal.style.display = "block";
+                              
+                            }
+                            span.onclick = function() {
+                              modal.style.display = "none";
+                            }
+                            window.onclick = function(event) {
+                              if (event.target == modal) {
+                                modal.style.display = "none";
+                              }
+                            }
+                            </script>    
+                        </div>
+                    </div>
+                    
+                </div> -->
+            </div>
+        {% endif %}
+        {% endblock %}   
+        </div>
+    </div>
+    </div>
+    </div>
+</html>
+

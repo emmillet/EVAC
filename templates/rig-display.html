@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>{% block title %} EVAC {% endblock %}</title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/materialize.min.css')}}">
+        <link rel="stylesheet" type= "text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Shared site-wide CSS  -->
+        <!-- <link rel="stylesheet" href="/styles/main.css"> -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css')}}">
+        <!-- Page specific CSS -->
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename= 'styles/my-info.css')}}">
+          <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css"> -->
+          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    </head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <img class = "hide-on-small-and-down" src="{{url_for('static', filename='images/ambulance.png')}}"/>
+                <a href="/" class="brand-logo">EVAC</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="desktop-nav" class="right hide-on-med-and-down">
+                    <li><a href="/login"><i class="material-icons left">login</i>Login</a></li>
+                    <li><a href="/calendar"><i class="material-icons left">schedule</i>Schedule</a></li>
+                    <li><a href="/infoform"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+                    <li><a href="/rigform"><i class="material-icons left">assignment</i>Rig Check</a></li>
+ 
+                    <li><a href="/create"><i class="material-icons left">assignment</i>Create User</a></li>
+                    <li><a href = "/data"><i class = "material-icons left">view_list</i>View Data</a></li>
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- <ul id="mobile-nav" class="sidenav">
+            <li><a href="/login"><i class="material-icons left"` style="font-size:30px">schedule</i>Schedule</a></li>
+                    <li><a href="/templates/my-info"><i class="material-icons left">account_circle</i>My Info</a></li>
+                    <li><a href="/templates/clock-in"><i class="material-icons left">assignment</i>Clock In</a></li>
+        </ul> -->
+    </header>
+<style>
+ 
+ td {
+        width: 150px;
+        text-align: center;
+        color: solid white;
+        border: 3px solid white;
+        padding: 5px;
+      }
+</style>
+<table>
+    
+  <thead>
+    <tr>
+        {% for column in columns %}
+        <th class="text-left white-text">{{column}}</th>
+        {% endfor %}
+    </tr>
+    
+    </thead>    
+    <tbody>
+     {% for row in data %} 
+       
+            <tr>
+                {% for item in row %} 
+                <td class="text-left white-text">{{item}}</td>
+                {% endfor %}
+            </tr>
+            
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
